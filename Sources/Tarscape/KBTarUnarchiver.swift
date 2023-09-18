@@ -309,7 +309,7 @@ public class KBTarUnarchiver {
                 if lazily {
                     entry = KBTarEntry(lazyFileWithSubpath: subpath, tarURL: tarURL, location: location, modificationDate: modDate, fileSize: size)
                 } else {
-                    let data = try self.data(at: location, length: size)
+                    let data = try self.data(at: location + UInt64(KBTar.blockSize), length: size)
                     entry = KBTarEntry(fileWithSubpath: subpath, regularFileContents: data, modificationDate: modDate, fileSize: size)
                 }
                 

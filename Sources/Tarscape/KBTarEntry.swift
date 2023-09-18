@@ -134,7 +134,7 @@ public class KBTarEntry {
                 return nil
             }
             if let fileHandle = try? FileHandle(forReadingFrom: tarURL) {
-                try? fileHandle.seek(toOffset: fileLocation)
+                try? fileHandle.seek(toOffset: fileLocation + UInt64(KBTar.blockSize))
                 _realRegularFileContents = try? fileHandle.read(upToCount: fileSize)
                 try? fileHandle.close()
                 return _realRegularFileContents
